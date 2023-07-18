@@ -6,7 +6,9 @@ const CartProvider = props => {
     const addItemToCartHandler=item=>{
       setItems([...items, item])
     };
-    const removeItemFromCartHandler=id=>{};
+    const removeItemFromCartHandler=id=>{
+      setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    };
 
     const cartContext={
         items:items, 

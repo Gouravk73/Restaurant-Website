@@ -8,6 +8,7 @@ const Cart = (props) => {
 
   const cartcntx=useContext(CartCntxt);
   let totalAmount=0;
+
   cartcntx.items.forEach(item=>{
     totalAmount= totalAmount+ (Number(item.price)*Number(item.quantity));
   })
@@ -21,13 +22,36 @@ const Cart = (props) => {
       combinedItems[itemName].quantity += itemQuantity;
     else combinedItems[itemName] = { ...item, quantity: itemQuantity, price: itemPrice };
   })
-
-
+ 
   const cartItems = (
     <ul className={classes['cart-items']}>
       { Object.keys(combinedItems).map((item) => (
-        <li style={{wordSpacing:'10px'}}>Name: {item} Price: {combinedItems[item].price} Quantity: {combinedItems[item].quantity} </li>
-      ))}
+                  <li key={item}>
+                  <span className={classes['cart-li']} >
+
+                  <span className={classes.name}>
+                    <strong>{item}</strong>
+                  </span>
+                  <span>
+                  <span className={classes.price}>
+                    ${combinedItems[item].price}
+                    
+                  </span >
+                  <span className={classes.quantity}>
+                  <button>  x {combinedItems[item].quantity}</button>
+                  </span>
+                  </span>
+                  </span>
+                    <span className={classes.quantityButtons}>
+                  <button>-</button>
+                    <button style={{backgroundColor:'red'}}>+</button>
+                  </span>
+
+                  
+                </li>
+                
+              ))}
+              
     </ul>
   );
 
