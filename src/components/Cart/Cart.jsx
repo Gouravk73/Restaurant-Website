@@ -43,8 +43,9 @@ const Cart = (props) => {
                   </span>
                   </span>
                     <span className={classes.quantityButtons}>
-                  <button>-</button>
-                    <button style={{backgroundColor:'red'}}>+</button>
+                      {console.log(item.id,combinedItems[item])}
+                  <button onClick={() => cartcntx.removeQuantityHandler(combinedItems[item].id)}>-</button>
+                    <button style={{backgroundColor:'red'}}  onClick={() => cartcntx.addQuantityHandler(combinedItems[item])}>+</button>
                   </span>
 
                   
